@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gravity_Shift : MonoBehaviour
+public class GravityShift : MonoBehaviour
 {
     [SerializeField] Transform player;
     BoxCollider2D gravityTrigger;
