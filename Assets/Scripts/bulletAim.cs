@@ -6,6 +6,8 @@ public class bulletAim : MonoBehaviour
 {
     float moveSpeed = 7f;
 
+    [SerializeField] Health hp;
+    [SerializeField] int damage;
     Rigidbody2D rb;
 
     magnet target;
@@ -14,6 +16,7 @@ public class bulletAim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hp = FindObjectOfType<Health>();
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindObjectOfType<magnet>();
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
@@ -30,12 +33,10 @@ public class bulletAim : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Terrain"))
-        {
-            DestroySelf();
-        }
+        
         if (other.gameObject.CompareTag("Player"))
         {
+            hp.TakeDamage(damage);
             DestroySelf();
         }
         if (other.gameObject.CompareTag("Platform"))
