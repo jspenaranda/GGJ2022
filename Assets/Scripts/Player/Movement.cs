@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     bool isGrounded;
 
     [SerializeField] bool extraJump = false;
+    
 
     Rigidbody2D myRigidBody;
     [SerializeField] Transform groundCheck;
@@ -32,7 +33,10 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, radiusCheck, whatIsGround);
-
+        if (isGrounded)
+        {
+            extraJump = true;
+        }
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         myRigidBody.velocity = new Vector2(horizontalMove, myRigidBody.velocity.y);
 
@@ -62,6 +66,7 @@ public class Movement : MonoBehaviour
             Input.GetButtonDown("Jump") && myRigidBody.gravityScale > 0)
         {
             myRigidBody.velocity = Vector2.up * jumpForce;
+            extraJump = false;
         }
 
         if (isGrounded == false &&
@@ -69,6 +74,7 @@ public class Movement : MonoBehaviour
             Input.GetButtonDown("Jump") && myRigidBody.gravityScale < 0)
         {
             myRigidBody.velocity = Vector2.down * jumpForce;
+            extraJump = false;
         }
     }
 
