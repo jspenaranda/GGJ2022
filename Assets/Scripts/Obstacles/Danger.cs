@@ -9,6 +9,10 @@ public class Danger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.TakeDamage(damage);
+        if (collision.CompareTag("Player"))
+        {
+            player.TakeDamage(damage);
+        }
+        
     }
 }

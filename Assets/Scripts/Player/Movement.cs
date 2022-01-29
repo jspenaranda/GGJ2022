@@ -25,18 +25,9 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if (isGrounded == true && Input.GetButtonDown("Jump"))
-        {
-            myRigidBody.velocity = Vector2.up * jumpForce;
-        }
-
-        if (isGrounded == false && 
-            extraJump &&
-            Input.GetButtonDown("Jump"))
-        {
-            myRigidBody.velocity = Vector2.up * jumpForce;
-        }
+        Jump();
     }
+
 
     private void FixedUpdate()
     {
@@ -52,6 +43,32 @@ public class Movement : MonoBehaviour
         else if (faceRight == true && horizontalMove < 0)
         {
             Flip();
+        }
+    }
+
+    private void Jump()
+    {
+        if (isGrounded == true && Input.GetButtonDown("Jump") && myRigidBody.gravityScale > 0)
+        {
+            myRigidBody.velocity = Vector2.up * jumpForce;
+        }
+        if (isGrounded == true && Input.GetButtonDown("Jump") && myRigidBody.gravityScale < 0)
+        {
+            myRigidBody.velocity = Vector2.down * jumpForce;
+        }
+
+        if (isGrounded == false &&
+            extraJump &&
+            Input.GetButtonDown("Jump") && myRigidBody.gravityScale > 0)
+        {
+            myRigidBody.velocity = Vector2.up * jumpForce;
+        }
+
+        if (isGrounded == false &&
+            extraJump &&
+            Input.GetButtonDown("Jump") && myRigidBody.gravityScale < 0)
+        {
+            myRigidBody.velocity = Vector2.down * jumpForce;
         }
     }
 
