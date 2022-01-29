@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class keyCollect : MonoBehaviour
 {
+    [SerializeField] GUIKey key;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class keyCollect : MonoBehaviour
     {
         if(other.name == ("Player"))
         {
+            
             other.GetComponent<keyCounter>().points++;
             Destroy(gameObject);
         }
