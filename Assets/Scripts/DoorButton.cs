@@ -5,13 +5,18 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     public bool öffnen = false;
+    PlayerSFX player;
 
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerSFX>();
+    }
     void Update()
     {
         if (öffnen)
         {
-            Destroy(gameObject);
-            
+            player.PlayDoor();
+            Destroy(gameObject);            
         }
 
     }

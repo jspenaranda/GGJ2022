@@ -14,11 +14,11 @@ public class GravityShift : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             player.GetComponent<Rigidbody2D>().gravityScale *= -1;
-            player.Rotate(0,0,180);
+            player.Rotate(0, 0, 180);
             myAudioSource.Play();
-        }        
+        }
     }
 }
