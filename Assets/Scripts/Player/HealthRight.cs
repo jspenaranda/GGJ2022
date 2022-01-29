@@ -12,9 +12,7 @@ public class HealthRight : MonoBehaviour
 
     private void Start()
     {
-        currHealth = minHealth;
-        healthBar.SetMinHealth(minHealth);
-        
+        currHealth = minHealth;        
     }
     
     public void TakeDamage(int damage)

@@ -12,11 +12,7 @@ public class HealthBar
     {
         slider = GetComponent<Slider>();
     }
-    public void SetMinHealth(int health)
-    {
-        slider.minValue = health;
-        slider.value = health;
-    }
+    
     public void SetHealth(int health)
     {
         slider.value = health;
