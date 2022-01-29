@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour
 {
+    
     private void Awake()
     {
         int numGameSessions = FindObjectsOfType<GameSession>().Length;
@@ -16,9 +17,10 @@ public class GameSession : MonoBehaviour
         }
 
     }
+    
 
     public void Reset()
-    {        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);        
     }
 }

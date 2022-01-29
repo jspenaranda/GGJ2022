@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class activateEnemy : MonoBehaviour
 {
-    Object bulletRef;
+    [SerializeField] GameObject bulletRef;
     private bool inside = false;
     public bool trigger;
     private bool isAlive = true;
     private Transform playerPos;
     //public GameEvent Lvl02EnemyShooting;
-    void Start()
+
+    private void Start()
     {
-        bulletRef = Resources.Load("Bullet");
+        bulletRef = Resources.Load("Prefabs/bullet") as GameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +47,7 @@ public class activateEnemy : MonoBehaviour
     {
         if (isAlive == true)
         {
-            GameObject bullet = (GameObject)Instantiate(bulletRef);
+            GameObject bullet = Instantiate(bulletRef);
             bullet.transform.position = new Vector2(transform.position.x, transform.position.y + 2.5f);
             if (inside == true)
             {

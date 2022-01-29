@@ -8,7 +8,10 @@ public class GravityShift : MonoBehaviour
     BoxCollider2D gravityTrigger;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.GetComponent<Rigidbody2D>().gravityScale *= -1;
-        player.Rotate(0,0,180);
+        if(collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<Rigidbody2D>().gravityScale *= -1;
+            player.Rotate(0,0,180);
+        }        
     }
 }

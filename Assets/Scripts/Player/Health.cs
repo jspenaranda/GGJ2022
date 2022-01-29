@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        if (Mathf.Abs(currHealth) == maxHealth) 
+        if (Mathf.Abs(currHealth) > maxHealth) 
         {
             gameSession.Reset();  
         } 
