@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class magnet : MonoBehaviour
+public class Magnet : MonoBehaviour
 {
 
     public Transform target;
@@ -29,6 +29,7 @@ public class magnet : MonoBehaviour
     {
         if (other.gameObject.tag == "magnet")
         {
+            target = other.transform;
             checker = true;
         }
     }
@@ -37,6 +38,7 @@ public class magnet : MonoBehaviour
         if (other.gameObject.tag == "magnet")
         {
             checker = false;
+            target = null;
         }
     }
 }
