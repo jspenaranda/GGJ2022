@@ -19,6 +19,6 @@ public class keyCounter : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 100, 20), "Score : " + points);
+        GUI.Label(new Rect(10, 10, 100, 20), "Keys : " + points);
     }
 }

@@ -15,6 +15,6 @@ public class HealthBar
     
     public void SetHealth(int health)
     {
-        slider.value = health;
-    }
+        slider.value = health;        
+    }    
 }
