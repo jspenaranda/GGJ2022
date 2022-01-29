@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     bool faceRight = true;
     bool isGrounded;
 
+    PlayerSFX myPlayer;
+
     [SerializeField] bool extraJump = false;
     
 
@@ -22,6 +24,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
+        myPlayer = GetComponent<PlayerSFX>();;
     }
 
     void Update()
@@ -29,7 +32,7 @@ public class Movement : MonoBehaviour
         Jump();
     }
 
-
+   
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, radiusCheck, whatIsGround);
@@ -37,8 +40,8 @@ public class Movement : MonoBehaviour
         {
             extraJump = true;
         }
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        myRigidBody.velocity = new Vector2(horizontalMove, myRigidBody.velocity.y);
+        
+        Walk();
 
         if (faceRight == false && horizontalMove > 0)
         {
@@ -50,15 +53,32 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void Walk()
+    {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        myRigidBody.velocity = new Vector2(horizontalMove, myRigidBody.velocity.y);
+
+        if (Mathf.Abs(horizontalMove) > 0 && isGrounded)
+        {
+            myPlayer.PlayWalk();
+        }
+        else
+        {
+            myPlayer.DeactivateLoop();
+        }
+    }
+
     private void Jump()
     {
         if (isGrounded == true && Input.GetButtonDown("Jump") && myRigidBody.gravityScale > 0)
         {
             myRigidBody.velocity = Vector2.up * jumpForce;
+            myPlayer.PlayJump();
         }
         if (isGrounded == true && Input.GetButtonDown("Jump") && myRigidBody.gravityScale < 0)
         {
             myRigidBody.velocity = Vector2.down * jumpForce;
+            myPlayer.PlayJump();
         }
 
         if (isGrounded == false &&
@@ -67,6 +87,7 @@ public class Movement : MonoBehaviour
         {
             myRigidBody.velocity = Vector2.up * jumpForce;
             extraJump = false;
+            myPlayer.PlayJump();
         }
 
         if (isGrounded == false &&
@@ -75,6 +96,7 @@ public class Movement : MonoBehaviour
         {
             myRigidBody.velocity = Vector2.down * jumpForce;
             extraJump = false;
+            myPlayer.PlayJump();
         }
     }
 
