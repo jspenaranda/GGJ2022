@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DangerLeft : MonoBehaviour
+public class Danger: MonoBehaviour
 {
-    [SerializeField] HealthLeft player;
-    [SerializeField] int damage = 20;
+    [SerializeField] Health player;
+    [SerializeField] int damage = -20;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
