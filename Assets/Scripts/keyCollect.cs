@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class keyCollect : MonoBehaviour
 {
-    [SerializeField] GUIKey key;
+    public GameObject keyPart;
     // Start is called before the first frame update
     void Start()
     {
-        
+        keyPart.SetActive(false); //line 45
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.name == ("Player"))
+        if(other.tag == ("Player"))
         {
-            
-            other.GetComponent<keyCounter>().points++;
+            keyPart.SetActive(true);
             Destroy(gameObject);
         }
     }
