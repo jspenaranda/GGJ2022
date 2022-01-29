@@ -61,11 +61,7 @@ public class Movement : MonoBehaviour
         if (Mathf.Abs(horizontalMove) > 0 && isGrounded)
         {
             myPlayer.PlayWalk();
-        }
-        else
-        {
-            myPlayer.DeactivateLoop();
-        }
+        }       
     }
 
     private void Jump()

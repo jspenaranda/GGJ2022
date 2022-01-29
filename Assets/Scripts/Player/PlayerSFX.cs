@@ -6,6 +6,8 @@ public class PlayerSFX : MonoBehaviour
 {
     [SerializeField] AudioClip jumpSFX;
     [SerializeField] AudioClip walkSFX;
+    [SerializeField] AudioClip pullSFX; 
+    [SerializeField] AudioClip pushSFX;
     AudioSource myAudioSource;    
 
     private void Start()
@@ -15,21 +17,25 @@ public class PlayerSFX : MonoBehaviour
 
     public void PlayJump()
     {
-        DeactivateLoop();
         myAudioSource.clip = jumpSFX;
+        myAudioSource.Play();
+    }
+
+    public void PlayPull()
+    {
+        myAudioSource.clip = pullSFX;
+        myAudioSource.Play();
+    }
+
+    public void PlayPush()
+    {        
+        myAudioSource.clip = pushSFX;
         myAudioSource.Play();
     }
 
     public void PlayWalk()
     {
         myAudioSource.clip = walkSFX;        
-        myAudioSource.Play();
-        
-    }
-
-    public void DeactivateLoop()
-    {
-        myAudioSource.loop = false;
-        myAudioSource.Stop();        
-    }
+        myAudioSource.Play();        
+    }    
 }

@@ -29,6 +29,14 @@ public class magnet : MonoBehaviour
     {
         if (other.gameObject.tag == "magnet")
         {
+            if(other.GetComponent<PushAudio>())
+            {
+                GetComponent<PlayerSFX>().PlayPush();
+            }
+            else if (other.GetComponent<PullAudio>())
+            {
+                GetComponent<PlayerSFX>().PlayPull();
+            }
             target = other.transform;
             checker = true;
         }
