@@ -9,6 +9,7 @@ public class PlayerSFX : MonoBehaviour
     [SerializeField] AudioClip pullSFX; 
     [SerializeField] AudioClip pushSFX;
     [SerializeField] AudioClip doorSFX;
+    [SerializeField] AudioClip keySFX;
     AudioSource myAudioSource;    
 
     private void Start()
@@ -43,5 +44,12 @@ public class PlayerSFX : MonoBehaviour
     {
         myAudioSource.clip = walkSFX;        
         myAudioSource.Play();        
-    }    
+    }
+
+    public void PlayKey()
+    {
+        myAudioSource.clip = keySFX;
+        myAudioSource.Play();
+    }
+
 }
