@@ -13,7 +13,7 @@ public class activateEnemy : MonoBehaviour
 
     private void Start()
     {
-        bulletRef = Resources.Load("Prefabs/bullet") as GameObject;
+        bulletRef = Resources.Load("Prefabs/Obstacles/bullet") as GameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
