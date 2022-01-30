@@ -17,10 +17,25 @@ public class GameSession : MonoBehaviour
         }
 
     }
-    
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
 
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene(2);
+    }
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);        
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
