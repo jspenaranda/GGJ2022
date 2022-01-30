@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     bool isGrounded;
 
     PlayerSFX myPlayer;
+    Animator myAnimator;
 
     [SerializeField] bool extraJump = false;
     
@@ -24,7 +25,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-        myPlayer = GetComponent<PlayerSFX>();;
+        myPlayer = GetComponent<PlayerSFX>();
+        myAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -60,23 +62,22 @@ public class Movement : MonoBehaviour
 
         if (Mathf.Abs(horizontalMove) > 0 && isGrounded)
         {
+            myAnimator.SetBool("glide", true);
             myPlayer.PlayWalk();
-        }
-        else
-        {
-            myPlayer.DeactivateLoop();
-        }
+        }       
     }
 
     private void Jump()
     {
         if (isGrounded == true && Input.GetButtonDown("Jump") && myRigidBody.gravityScale > 0)
         {
+            myAnimator.SetBool("jump", true);
             myRigidBody.velocity = Vector2.up * jumpForce;
             myPlayer.PlayJump();
         }
         if (isGrounded == true && Input.GetButtonDown("Jump") && myRigidBody.gravityScale < 0)
         {
+            myAnimator.SetBool("jump", true);
             myRigidBody.velocity = Vector2.down * jumpForce;
             myPlayer.PlayJump();
         }
@@ -85,6 +86,7 @@ public class Movement : MonoBehaviour
             extraJump &&
             Input.GetButtonDown("Jump") && myRigidBody.gravityScale > 0)
         {
+            myAnimator.SetBool("jump", true);
             myRigidBody.velocity = Vector2.up * jumpForce;
             extraJump = false;
             myPlayer.PlayJump();
@@ -94,6 +96,7 @@ public class Movement : MonoBehaviour
             extraJump &&
             Input.GetButtonDown("Jump") && myRigidBody.gravityScale < 0)
         {
+            myAnimator.SetBool("jump", true);
             myRigidBody.velocity = Vector2.down * jumpForce;
             extraJump = false;
             myPlayer.PlayJump();
